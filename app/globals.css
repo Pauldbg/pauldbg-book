@@ -1,8 +1,16 @@
-@import "tailwindcss";
+@import "tailwindcss"; /* Import Tailwind CSS anciennement importé avec @tailwind base; @tailwind components; @tailwind utilities; */
 
+
+/* Suppression du @layer base */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+[data-theme="dark"] { /* Theme dark anciennement .dark */
+  --background: 240 31% 0%;
+  --foreground: 240 20% 99%;
+  --muted: 210 30% 14%;
 }
 
 @theme inline {
