@@ -1,8 +1,9 @@
 // app/page.js
-import Logo from '@/src/features/LandingAnimation/Logo';
-import LandingAnimation from '@/src/features/LandingAnimation/LandingAnimation';
-import ScrollIndicator from '@/src/features/ScrollIndicator/ScrollIndicator';
+import Logo from '@/src/features/DrawLandingAnimation/Logo';
+import LandingAnimation from '@/src/features/DrawLandingAnimation/LandingAnimation';
+import ScrollIndicator from '@/src/components/ui/ScrollIndicator/ScrollIndicator';
 import ProjectCubes from '@/src/features/ProjectCubes/ProjectCubes';
+//? import LogoFlammeEyes from '@/src/features/LogoFlammeEyes/LogoFlammeEyes';
 
 export default function Home() {
   return (
@@ -11,7 +12,6 @@ export default function Home() {
       <div className="w-full p-4">
         {/* Logo qui apparaît au chargement */}
         <Logo />
-        
         {/* Indicateur de défilement */}
         <ScrollIndicator />
         

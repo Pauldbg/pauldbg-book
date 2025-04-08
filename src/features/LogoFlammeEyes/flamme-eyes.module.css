@@ -1,0 +1,22 @@
+/* src/features/LogoFlammeEyes/flamme-eyes.module.css */
+.flameContainer {
+  filter: blur(1px);
+  transform-origin: center left;
+}
+
+.flameSvg {
+  filter: drop-shadow(0 0 5px rgba(255, 100, 50, 0.7));
+}
+
+@keyframes flicker {
+  0% { opacity: 0.7; transform: scaleY(0.95); }
+  25% { opacity: 0.9; transform: scaleY(1.05); }
+  50% { opacity: 0.8; transform: scaleY(1); }
+  75% { opacity: 0.95; transform: scaleY(1.1); }
+  100% { opacity: 0.7; transform: scaleY(0.95); }
+}
+
+.flamePath {
+  animation: flicker 0.5s infinite alternate;
+  transform-origin: center right;
+}

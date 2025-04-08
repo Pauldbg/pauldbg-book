@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/LandingAnimation/LandingAnimation.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/features/LandingAnimation/LandingAnimation.jsx", "src/features/test/LogoEyesFinder.jsx"],
   "exclude": ["node_modules"]
 }

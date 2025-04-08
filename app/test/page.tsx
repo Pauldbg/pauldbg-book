@@ -11,6 +11,9 @@ export default function TestPage() {
       <AnimatedFrame />
       
       <div className="h-screen"></div>
+      {/* Points de repère pour les yeux - invisibles, juste pour identifier les positions */}
+<circle cx="253" cy="300" r="2" fill="none" className="eye-point-left" />
+<circle cx="342" cy="290" r="2" fill="none" className="eye-point-right" />
     </main>
   );
 }

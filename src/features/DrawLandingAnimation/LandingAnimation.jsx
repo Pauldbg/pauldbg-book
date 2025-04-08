@@ -61,7 +61,7 @@ export default function LandingAnimation() {
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 overflow-auto">
-      <div className="svg-container max-w-4xl mx-auto pb-16">
+      <div className="svg-container max-w-2xl mx-auto pb-16"> {/* Changé max-w-4xl à max-w-2xl */}
         <svg 
           ref={svgRef} 
           width="1110" 
@@ -70,7 +70,10 @@ export default function LandingAnimation() {
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-auto"
-          style={{ opacity: 1 }}
+          style={{ 
+            opacity: 1,
+            maxHeight: '2000px' // Ajouté une hauteur maximale
+          }}
         >
           <path d="M613.5 1C185.9 462.2 386.333 591.167 540 598L1077.5 338L2 568.5L838 1065V822.5L217.5 1174L805.5 1800.5L752.5 1493.5L73 1747.5" stroke="black" strokeWidth="2"/>
           <path d="M848 2437L611.5 2116L485 2908.5L168.5 3103M848 2437L168.5 3103M848 2437L939 3731.5L168.5 3103" stroke="black" strokeWidth="2"/>
