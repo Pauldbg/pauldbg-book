@@ -1,9 +1,9 @@
 // app/page.js
 import Logo from '@/src/features/DrawLandingAnimation/Logo';
 import LandingAnimation from '@/src/features/DrawLandingAnimation/LandingAnimation';
-import ScrollIndicator from '@/src/components/ui/ScrollIndicator/ScrollIndicator';
+import ScrollIndicator from '@/src/components/ui/ScrollIndicator';
 import ProjectCubes from '@/src/features/ProjectCubes/ProjectCubes';
-//? import LogoFlammeEyes from '@/src/features/LogoFlammeEyes/LogoFlammeEyes';
+import {BrutalNavButton} from '@/src/features/Navigation/BrutalNavigationButton';
 
 export default function Home() {
   return (
@@ -12,6 +12,7 @@ export default function Home() {
       <div className="w-full p-4">
         {/* Logo qui apparaît au chargement */}
         <Logo />
+        <BrutalNavButton />
         {/* Indicateur de défilement */}
         <ScrollIndicator />
         
