@@ -2,7 +2,6 @@
 
 // app/test/page.tsx
 import AnimatedFrame from "@/src/features/AnimatedFrame/AnimatedFrame";
-import { BrutalNavButton as OLD_BrutalNavButton } from "@/src/features/Navigation/[OLD] BrutalNavigationButton";
 // import MenuButton from '@/src/components/ui/MenuButton';
 
 export default function TestPage() {
@@ -15,7 +14,6 @@ export default function TestPage() {
       </div>
 
       <AnimatedFrame />
-      <OLD_BrutalNavButton />
       <div className="h-screen"></div>
     </main>
   );

@@ -1,3 +1,4 @@
+// src/features/About/Components/BrutalSkillsCard.jsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -26,7 +27,8 @@ export default function BrutalSkillsCard() {
   }, []);
   
   useEffect(() => {
-    if (!isClient || typeof window === 'undefined') return;
+    // Ne pas initialiser les animations si on n'est pas côté client
+    if (!isClient) return;
     
     const initAnimation = async () => {
       try {
@@ -72,23 +74,25 @@ export default function BrutalSkillsCard() {
       }
     };
     
-    // Petit délai pour s'assurer que tout est rendu
-    const timer = setTimeout(() => {
-      initAnimation();
-    }, 100);
+    // Exécuter l'initialisation immédiatement, sans setTimeout
+    initAnimation();
     
     return () => {
-      clearTimeout(timer);
+      // Nettoyage
       if (typeof ScrollTrigger !== 'undefined') {
         ScrollTrigger.getAll().forEach(st => st.kill());
       }
     };
-  }, [isClient]);
+  }, [isClient]); // Dépendance sur isClient
+  
+  // Rendu conditionnel pour éviter les erreurs d'hydratation
+  if (!isClient) return null;
 
   return (
     <div 
       ref={cardRef} 
       className={`bg-white p-8 border-4 border-black shadow-lg ${styles.brutalBox || ""}`}
+      style={{ opacity: 0 }} // Assurez-vous qu'il commence invisible
     >
       <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b-4 border-black pb-2 inline-block">TECH STACK</h2>
       <ul className="space-y-4 text-xl">

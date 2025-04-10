@@ -1,13 +1,22 @@
-// src/features/ScrollIndicator/ScrollIndicator.jsx
+// src/components/ui/ScrollIndicator.jsx
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function ScrollIndicator() {
   const textRef = useRef(null);
   const arrowRef = useRef(null);
+  const [isClient, setIsClient] = useState(false); // on controlle l'apparition de l'indicateur
+
+  // S'assurer qu'on est côté client avant d'initialiser GSAP
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    // Ne pas initialiser les animations si on n'est pas côté client
+    if (!isClient) return;
+
     // Animation répétitive pour l'indicateur
     gsap.to(arrowRef.current, {
       y: 10,
@@ -22,9 +31,12 @@ export default function ScrollIndicator() {
       opacity: 0,
       y: -10,
       duration: 1,
-      delay: 1.5, // Apparaît après l'animation du logo
+      delay: 0.5, // Réduit pour un chargement dynamique
     });
-  }, []);
+  }, [isClient]); // Dépendance sur isClient
+
+  // Rendu conditionnel pour éviter les erreurs d'hydratation
+  if (!isClient) return null;
 
   return (
     <div className="mt-1 text-center" ref={textRef}>

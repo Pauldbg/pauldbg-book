@@ -1,15 +1,21 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react'; // Ajout de useState
 import gsap from 'gsap';
 import styles from '../styles/about.module.css';
 
 export default function BrutalDrawing() {
   const svgRef = useRef(null);
   const drawingWrapperRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false); // Ajout de l'état pour gérer le montage
+
+  // S'assurer que le composant n'est rendu que côté client
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!svgRef.current) return;
+    if (!isMounted || !svgRef.current) return; // Vérifier le montage
     
     // Animation des traits du dessin après un court délai pour s'assurer que le DOM est chargé
     setTimeout(() => {
@@ -42,7 +48,12 @@ export default function BrutalDrawing() {
       });
     }, 100); // Un petit délai pour s'assurer que le SVG est complètement rendu
     
-  }, []);
+  }, [isMounted]); // Dépendance à isMounted
+
+  // Rendu conditionnel
+  if (!isMounted) {
+    return null; // Ne rien afficher pendant le chargement côté client
+  }
 
   return (
     <div 

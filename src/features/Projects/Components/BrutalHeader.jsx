@@ -10,11 +10,25 @@ export default function BrutalHeader({ title, subtitle }) {
   const borderRef = useRef(null);
 
   useEffect(() => {
-    // Animation brutalist du titre et sous-titre
+    // Animation brutalist du titre avec animation améliorée
     gsap.fromTo(
       titleRef.current,
-      { x: -20, opacity: 0, skewX: 5 },
-      { x: 0, opacity: 1, skewX: 0, duration: 0.5, ease: "power2.out" }
+      {
+        y: -5,
+        x: -20,
+        opacity: 0,
+        skewX: 5,
+        scale: 0.98,
+      },
+      {
+        y: 0,
+        x: 0,
+        opacity: 1,
+        skewX: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: "power3.out",
+      }
     );
 
     if (subtitleRef.current) {
@@ -73,7 +87,7 @@ export default function BrutalHeader({ title, subtitle }) {
       <div className="container mx-auto px-4">
         <h1
           ref={titleRef}
-          className="text-7xl sm:text-9xl font-bold uppercase mb-2 leading-none"
+          className="text-7xl sm:text-9xl font-bold uppercase mb-2 leading-none opacity-0"
         >
           {title}
         </h1>
@@ -105,6 +119,8 @@ export default function BrutalHeader({ title, subtitle }) {
             points="0,2 100,2" // Points initiaux par défaut
           />
         </svg>
+
+        {/* Ajouter une ligne droite en dessous pour combler les trous */}
       </div>
     </header>
   );
