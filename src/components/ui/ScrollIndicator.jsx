@@ -29,7 +29,7 @@ export default function ScrollIndicator() {
   return (
     <div className="mt-8 text-center" ref={textRef}>
       <p className="text-sm text-gray-500 font-light tracking-widest uppercase mb-2">
-        Scroll pour découvrir
+        Scroll to discover
       </p>
       <div ref={arrowRef} className="mx-auto w-6 h-6">
         <svg 

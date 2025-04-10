@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 
 // Liste des éléments du menu
 const menuItems = [
-  { id: 1, label: 'ABOUT', link: '/about' },
+  { id: 0, label: 'HOME', link: '/' },
+  { id: 1, label: 'ABOUT ME', link: '/about' },
   { id: 2, label: 'PROJECTS', link: '/projects' },
   { id: 3, label: 'CONTACT', link: '/contact' },
 ];

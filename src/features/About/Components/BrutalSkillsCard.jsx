@@ -1,0 +1,108 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import styles from '../styles/about.module.css';
+
+// Tableau des compétences
+const skills = [
+  { id: 1, name: "Next.js" },
+  { id: 2, name: "React.js" },
+  { id: 3, name: "Node.js" },
+  { id: 4, name: "TypeScript" },
+  { id: 5, name: "GSAP" },
+  { id: 6, name: "Tailwind CSS" }
+];
+
+export default function BrutalSkillsCard() {
+  const cardRef = useRef(null);
+  const itemsRef = useRef([]);
+  const [isClient, setIsClient] = useState(false);
+  
+  // S'assurer que le composant est monté côté client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  useEffect(() => {
+    if (!isClient || typeof window === 'undefined') return;
+    
+    const initAnimation = async () => {
+      try {
+        const ScrollTriggerModule = await import('gsap/dist/ScrollTrigger');
+        gsap.registerPlugin(ScrollTriggerModule.ScrollTrigger);
+        
+        // Animation de la carte
+        if (cardRef.current) {
+          gsap.fromTo(cardRef.current,
+            { opacity: 0, y: 30 },
+            { 
+              opacity: 1, 
+              y: 0, 
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: cardRef.current,
+                start: "top 80%"
+              }
+            }
+          );
+        }
+        
+        // Animation des items - assurons-nous que les refs sont bien initialisées
+        const validItems = itemsRef.current.filter(item => item !== null);
+        
+        if (validItems.length > 0) {
+          gsap.fromTo(validItems,
+            { opacity: 0, x: 30 },
+            { 
+              opacity: 1, 
+              x: 0, 
+              stagger: 0.15,
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: cardRef.current,
+                start: "top 70%"
+              }
+            }
+          );
+        }
+      } catch (error) {
+        console.error("Animation error:", error);
+      }
+    };
+    
+    // Petit délai pour s'assurer que tout est rendu
+    const timer = setTimeout(() => {
+      initAnimation();
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.getAll().forEach(st => st.kill());
+      }
+    };
+  }, [isClient]);
+
+  return (
+    <div 
+      ref={cardRef} 
+      className={`bg-white p-8 border-4 border-black shadow-lg ${styles.brutalBox || ""}`}
+    >
+      <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b-4 border-black pb-2 inline-block">TECH STACK</h2>
+      <ul className="space-y-4 text-xl">
+        {skills.map((skill, index) => (
+          <li 
+            key={skill.id} 
+            className="flex items-center"
+            ref={el => itemsRef.current[index] = el}
+          >
+            <span className="inline-block w-4 h-4 bg-black mr-4"></span>
+            {skill.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

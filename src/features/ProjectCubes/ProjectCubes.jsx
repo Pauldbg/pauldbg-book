@@ -167,7 +167,7 @@ export default function ProjectCubes() {
                 <div className="text-center">
                   <h3 className="text-2xl font-bold">{project.title}</h3>
                   <div className="w-12 h-0.5 bg-black mx-auto my-3"></div>
-                  <p className="text-lg">Voir le projet</p>
+                  <p className="text-lg">See the project</p>
                 </div>
               </div>
             </div>
