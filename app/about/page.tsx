@@ -1,6 +1,6 @@
 // app/about/page.jsx
 import AboutSection from "@/src/features/About/AboutSection";
-import { BrutalNavButton } from "@/src/features/Navigation/BrutalNavigationButton";
+import { BrutalNavButton } from "@/src/features/Navigation/[OLD] BrutalNavigationButton";
 
 export default function AboutPage() {
   return (

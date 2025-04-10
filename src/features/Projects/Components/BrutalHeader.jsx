@@ -20,8 +20,23 @@ export default function BrutalHeader({ title, subtitle }) {
     if (subtitleRef.current) {
       gsap.fromTo(
         subtitleRef.current,
-        { x: -15, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.5, delay: 0.2, ease: "power2.out" }
+        {
+          y: 5,
+          x: -10,
+          opacity: 0,
+          scale: 0.98,
+          skewX: 2,
+        },
+        {
+          y: 0,
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          skewX: 0,
+          duration: 0.8,
+          delay: 0.35,
+          ease: "power3.out",
+        }
       );
     }
 
@@ -65,7 +80,7 @@ export default function BrutalHeader({ title, subtitle }) {
         {subtitle && (
           <p
             ref={subtitleRef}
-            className="text-2xl sm:text-4xl font-mono mt-4 pl-2 border-l-8 border-black"
+            className="text-2xl sm:text-4xl font-mono mt-4 pl-2 border-l-8 border-black opacity-0"
           >
             {subtitle}
           </p>
@@ -90,8 +105,6 @@ export default function BrutalHeader({ title, subtitle }) {
             points="0,2 100,2" // Points initiaux par défaut
           />
         </svg>
-
-        {/* Ajouter une ligne droite en dessous pour combler les trous */}
       </div>
     </header>
   );

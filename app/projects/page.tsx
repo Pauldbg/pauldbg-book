@@ -1,6 +1,6 @@
 // app/about/page.jsx
-import ProjectSection from '@/src/features/Projects/ProjectSection'
-import { BrutalNavButton } from '@/src/features/Navigation/BrutalNavigationButton';
+import ProjectSection from "@/src/features/Projects/ProjectSection";
+import { BrutalNavButton } from "@/src/features/Navigation/[OLD] BrutalNavigationButton";
 
 export default function AboutPage() {
   return (

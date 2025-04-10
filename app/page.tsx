@@ -1,9 +1,9 @@
 // app/page.js
-import Logo from '@/src/features/DrawLandingAnimation/Logo';
-import LandingAnimation from '@/src/features/DrawLandingAnimation/LandingAnimation';
-import ScrollIndicator from '@/src/components/ui/ScrollIndicator';
-import ProjectCubes from '@/src/features/ProjectCubes/ProjectCubes';
-import {BrutalNavButton} from '@/src/features/Navigation/BrutalNavigationButton';
+import Logo from "@/src/features/DrawLandingAnimation/Logo";
+import LandingAnimation from "@/src/features/DrawLandingAnimation/LandingAnimation";
+import ScrollIndicator from "@/src/components/ui/ScrollIndicator";
+import ProjectCubes from "@/src/features/ProjectCubes/ProjectCubes";
+import { BrutalNavButton } from "@/src/features/Navigation/BrutalNavigationButton";
 
 export default function Home() {
   return (
@@ -15,14 +15,14 @@ export default function Home() {
         <BrutalNavButton />
         {/* Indicateur de défilement */}
         <ScrollIndicator />
-        
+
         {/* Espace entre les composants */}
         <div className="h-16"></div>
-        
+
         {/* Animation principale au scroll */}
         <LandingAnimation />
       </div>
-      
+
       {/* Section des projets */}
       <ProjectCubes />
     </main>
