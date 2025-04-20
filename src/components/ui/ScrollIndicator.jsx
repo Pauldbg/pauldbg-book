@@ -17,6 +17,8 @@ export default function ScrollIndicator() {
     // Ne pas initialiser les animations si on n'est pas côté client
     if (!isClient) return;
 
+    const animationDelay = 3;
+
     // Animation répétitive pour l'indicateur
     gsap.to(arrowRef.current, {
       y: 10,
@@ -24,6 +26,7 @@ export default function ScrollIndicator() {
       repeat: -1, // Répéter indéfiniment
       yoyo: true, // Aller-retour
       ease: "power1.inOut",
+      delay: animationDelay,
     });
 
     // Animation du texte
@@ -31,7 +34,7 @@ export default function ScrollIndicator() {
       opacity: 0,
       y: -10,
       duration: 1,
-      delay: 1, // Réduit pour un chargement dynamique
+      delay: animationDelay,
     });
   }, [isClient]); // Dépendance sur isClient
 

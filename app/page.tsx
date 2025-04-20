@@ -20,12 +20,12 @@ const ScrollIndicator = dynamic(
     ssr: false,
   }
 );
-const ProjectCubes = dynamic(
-  () => import("@/src/features/ProjectCubes/ProjectCubes"),
-  {
-    ssr: false,
-  }
-);
+// const ProjectCubes = dynamic(
+//   () => import("@/src/features/ProjectCubes/ProjectCubes"),
+//   {
+//     ssr: false,
+//   }
+// );
 
 export default function Home() {
   const [pageLoaded, setPageLoaded] = useState(false);
