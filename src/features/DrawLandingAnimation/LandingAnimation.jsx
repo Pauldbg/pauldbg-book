@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 export default function LandingAnimation() {
   const svgRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -16,11 +17,14 @@ export default function LandingAnimation() {
       gsap.registerPlugin(ScrollTriggerModule.ScrollTrigger);
 
       // Préparer les chemins pour l'animation
-      const paths = svgRef.current.querySelectorAll("path");
+      const paths = Array.from(svgRef.current.querySelectorAll("path"));
+
+      // Inverser l'ordre des paths pour l'animation (du haut vers le bas)
+      const reversedPaths = [...paths].reverse();
 
       // Configurer chaque chemin
-      paths.forEach((path) => {
-        const length = path.getTotalLength();
+      reversedPaths.forEach((path) => {
+        const length = path.getTotalLength ? path.getTotalLength() : 1000;
 
         // Initialiser le chemin avec dash égal à la longueur
         gsap.set(path, {
@@ -33,15 +37,17 @@ export default function LandingAnimation() {
       // Animer le tracé des chemins au scroll
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: svgRef.current,
+          trigger: containerRef.current,
           start: "top center",
-          end: "bottom center",
+          end: "+=220%",
           scrub: 1,
+          markers: true, // Activer pour voir exactement où l'animation commence/finit
         },
       });
 
-      // Animer chaque chemin
-      paths.forEach((path) => {
+      // Animer chaque chemin avec un délai séquentiel
+      // Plus de délai entre les chemins pour un effet plus progressif
+      reversedPaths.forEach((path) => {
         tl.to(
           path,
           {
@@ -64,45 +70,65 @@ export default function LandingAnimation() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 overflow-auto">
+    <div
+      ref={containerRef}
+      className="min-h-[250vh] flex items-center justify-center bg-gray-50 p-4 overflow-hidden"
+    >
       <div className="svg-container max-w-2xl mx-auto pb-16">
-        {" "}
-        {/* Changé max-w-4xl à max-w-2xl */}
         <svg
           ref={svgRef}
-          width="1110"
+          width="1107"
           height="3733"
-          viewBox="0 0 1110 3733"
+          viewBox="0 0 1107 5100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-auto"
           style={{
             opacity: 1,
-            maxHeight: "2000px", // Ajouté une hauteur maximale
+            maxHeight: "2600px",
           }}
         >
           <path
-            d="M613.5 1C185.9 462.2 386.333 591.167 540 598L1077.5 338L2 568.5L838 1065V822.5L217.5 1174L805.5 1800.5L752.5 1493.5L73 1747.5"
+            d="M364 3745C302.5 3762.5 200 3905.5 200 3905.5C200 3905.5 359.5 4087 537.5 4075C715.5 4063 751.5 3825.5 751.5 3825.5L537.5 3745C468 3772.5 451.5 3825.5 451.5 3825.5C451.5 3825.5 425.5 3727.5 364 3745Z"
             stroke="black"
             strokeWidth="2"
           />
           <path
-            d="M848 2437L611.5 2116L485 2908.5L168.5 3103M848 2437L168.5 3103M848 2437L939 3731.5L168.5 3103"
+            d="M101.5 4150.5L751 3826L535.5 4697L101.5 4150.5Z"
             stroke="black"
             strokeWidth="2"
           />
           <path
-            d="M851 2440.5C851 2440.5 1181.5 2513 1094.5 2670C1007.5 2827 886 2951 886 2951"
+            d="M540.5 2759.5L203 3817.5L632.5 3276L228 2982.5L864.5 2851.5C1179.7 3157.37 1123.66 3384.22 753.5 3826"
             stroke="black"
             strokeWidth="2"
           />
           <path
-            d="M75.5 1747.5L460 2047.5M460 2047.5C460 2047.5 499.5 1944.5 562 1932C624.5 1919.5 720.5 2005.5 720.5 2005.5M460 2047.5C460 2047.5 549.39 2132.47 607.5 2109.5M460 2047.5L562 2031.05M720.5 2005.5C720.5 2005.5 646.263 2094.18 607.5 2109.5M720.5 2005.5L607.5 2023.72M607.5 2109.5C577.5 2177.5 563 2799.5 559.5 3102M559.5 3102H890.5C890.5 3102 890.5 3343 559.5 3348C228.5 3353 167.5 3102 167.5 3102H559.5ZM559.5 3102L761.5 2313.5M562 2031.05C562 2031.05 556.5 1996 573.5 1992.5C590.5 1989 607.5 2023.72 607.5 2023.72M562 2031.05L607.5 2023.72M562 2031.05C562 2031.05 576.338 2068.72 593.5 2064C609.557 2059.58 607.5 2023.72 607.5 2023.72"
+            d="M403 2602.5C403 2602.5 493.5 2481 574.5 2496C655.5 2511 690.31 2533.95 736 2602.5"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <path
+            d="M735 2598C735 2603.6 704.5 2695 581.5 2745C458.5 2795 402 2598 402 2598"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <path
+            d="M403 2604L469 2603M733.5 2599C733.5 2599 643 2677 561.5 2665C480 2653 469 2603 469 2603M733.5 2599C733.5 2599 656 2522 583 2537C510 2552 469 2603 469 2603M733.5 2599L624.5 2600.65M469 2603L574.5 2601.41M574.5 2601.41C574.5 2601.41 582 2570.5 601 2575C620 2579.5 624.5 2600.65 624.5 2600.65M574.5 2601.41L624.5 2600.65M574.5 2601.41C574.5 2601.41 579 2629.5 601 2628C623 2626.5 624.5 2600.65 624.5 2600.65"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <path
+            d="M71.5 2051L583.5 2286L558.5 2238L282.5 2468L401.5 2603"
+            stroke="black"
+            strokeWidth="2"
+          />
+          <path
+            d="M611.454 1C183.889 542.497 467.299 846.552 620.953 854.575C620.953 854.575 1013.42 548.133 750.443 613.883C487.464 679.633 44 790.586 44 790.586L835.936 1250.25V965.528L215.486 1378.23L803.438 2113.8L750.443 1753.35L70.9978 2051.58"
             stroke="black"
             strokeWidth="2"
           />
         </svg>
-        <div className="mt-8 text-center"></div>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ export default function ScrollIndicator() {
       opacity: 0,
       y: -10,
       duration: 1,
-      delay: 0.5, // Réduit pour un chargement dynamique
+      delay: 1, // Réduit pour un chargement dynamique
     });
   }, [isClient]); // Dépendance sur isClient
 
