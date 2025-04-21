@@ -17,8 +17,8 @@ export default function Logo() {
     
     // Configuration initiale - mettre toutes les lettres hors écran (au-dessus)
     gsap.set(letterRefs.current, { 
-      y: -100, // Position au-dessus de leur position finale
-      opacity: 0,
+      y: -100, // Position au-dessus de leur position finale 
+      opacity: 0, // opacité a 0 pour ne pas voir les lettres
     });
     
     // Animation de chute des lettres une par une
