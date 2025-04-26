@@ -47,10 +47,14 @@ export default function Home() {
       {/* Section d'introduction */}
       <div className="w-full p-4">
         {/* Logo qui apparaît au chargement */}
-        <Logo />
+        <div className="py-10 text-center w-full">
+          {/* Ajoute plus d'espace vertical autour du logo */}
+          <Logo />
+        </div>
         <BrutalNavButton />
-        {/* Indicateur de défilement */}
-        <ScrollIndicator />
+        <div className="absolute bottom-20 left-0 right-0">
+          <ScrollIndicator />
+        </div>
 
         {/* Espace entre les composants */}
         <div className="h-16"></div>

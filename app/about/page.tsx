@@ -3,7 +3,6 @@
 
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-import { BrutalNavButton } from "@/src/features/Navigation/BrutalNavigationButton";
 
 // Import dynamique avec ssr désactivé pour éviter le flash
 const AboutSection = dynamic(() => import("@/src/features/About/AboutSection"), { 
@@ -27,7 +26,6 @@ export default function AboutPage() {
       className="min-h-screen bg-gray-50 transition-opacity duration-300"
       style={{ opacity: pageLoaded ? 1 : 0 }}
     >
-      <BrutalNavButton />
       <AboutSection />
     </main>
   );
