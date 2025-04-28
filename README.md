@@ -68,4 +68,4 @@ Feel free to contact me for any questions or collaboration proposals:
 - GitHub: Pauldbg
 
 ## 📄 License
- 2025 Dubois Gance Paul All rights reserved.
+ 2025 Dubois Gance Paul. All rights reserved.
