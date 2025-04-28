@@ -1,4 +1,4 @@
-// components/LandingAnimation.jsx
+// components/LandingAnimation.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -6,8 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 export default function LandingAnimation() {
-  const svgRef = useRef(null);
-  const containerRef = useRef(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -16,6 +16,8 @@ export default function LandingAnimation() {
       const ScrollTriggerModule = await import("gsap/dist/ScrollTrigger");
       gsap.registerPlugin(ScrollTriggerModule.ScrollTrigger);
 
+      if (!svgRef.current) return;
+
       // Préparer les chemins pour l'animation
       const paths = Array.from(svgRef.current.querySelectorAll("path"));
 
@@ -23,7 +25,7 @@ export default function LandingAnimation() {
       const reversedPaths = [...paths].reverse();
 
       // Configurer chaque chemin
-      reversedPaths.forEach((path) => {
+      reversedPaths.forEach((path: SVGPathElement) => {
         const length = path.getTotalLength ? path.getTotalLength() : 1000;
 
         // Initialiser le chemin avec dash égal à la longueur
@@ -47,7 +49,7 @@ export default function LandingAnimation() {
 
       // Animer chaque chemin avec un délai séquentiel
       // Plus de délai entre les chemins pour un effet plus progressif
-      reversedPaths.forEach((path) => {
+      reversedPaths.forEach((path: SVGPathElement) => {
         tl.to(
           path,
           {
