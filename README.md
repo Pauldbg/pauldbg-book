@@ -68,4 +68,4 @@ Feel free to contact me for any questions or collaboration proposals:
 - GitHub: Pauldbg
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+ 2025 Dubois Gance Paul All rights reserved.
