@@ -3,12 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-export default function BrutalHeader({ title, subtitle }) {
-  const headerRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const borderRef = useRef(null);
-  const [isMounted, setIsMounted] = useState(false);
+interface BrutalHeaderProps {
+  title: string;
+  subtitle?: string;
+}
+
+export default function BrutalHeader({ title, subtitle }: BrutalHeaderProps) {
+  const headerRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
+  const borderRef = useRef<SVGPolylineElement | null>(null);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   // S'assurer que le composant n'est rendu que côté client
   useEffect(() => {
@@ -64,10 +69,12 @@ export default function BrutalHeader({ title, subtitle }) {
 
     // Animation de fluctuation de la bordure
     const updateWavePath = () => {
-      if (!borderRef.current) return;
+      if (!borderRef.current || !headerRef.current) return;
 
       const width = headerRef.current.clientWidth; // Utiliser la largeur du header
-      const points = [];
+      if (!width) return;
+
+      const points: string[] = [];
       const segments = 10;
 
       // Position Y de départ

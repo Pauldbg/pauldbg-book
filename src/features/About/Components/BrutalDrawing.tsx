@@ -5,9 +5,9 @@ import gsap from 'gsap';
 import styles from '../styles/about.module.css';
 
 export default function BrutalDrawing() {
-  const svgRef = useRef(null);
-  const drawingWrapperRef = useRef(null);
-  const [isMounted, setIsMounted] = useState(false); // Ajout de l'état pour gérer le montage
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const drawingWrapperRef = useRef<HTMLDivElement | null>(null);
+  const [isMounted, setIsMounted] = useState<boolean>(false); // Ajout de l'état pour gérer le montage
 
   // S'assurer que le composant n'est rendu que côté client
   useEffect(() => {
@@ -19,11 +19,11 @@ export default function BrutalDrawing() {
     
     // Animation des traits du dessin après un court délai pour s'assurer que le DOM est chargé
     setTimeout(() => {
-      const paths = svgRef.current.querySelectorAll('path');
+      const paths = svgRef.current?.querySelectorAll('path');
       
       // Vérifions que chaque élément est bien un chemin SVG
-      paths.forEach(path => {
-        if (path && typeof path.getTotalLength === 'function') {
+      paths?.forEach(path => {
+        if (path instanceof SVGPathElement && typeof path.getTotalLength === 'function') {
           const length = path.getTotalLength();
           
           // Configurons individuellement chaque chemin avec sa longueur

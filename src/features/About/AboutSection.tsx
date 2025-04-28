@@ -30,7 +30,7 @@ const BrutalContactCard = dynamic(
 );
 
 export default function AboutSection() {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setIsMounted(true);
