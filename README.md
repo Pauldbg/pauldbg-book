@@ -1,41 +1,71 @@
-Stacks projets : 
-- utilisation de tailwind V4
-- NextJs 15
+# Paul's Creative Portfolio
+![screen-creative-portfolio-dbg-paul](https://github.com/user-attachments/assets/b698725a-070d-4636-8278-7652313fd093)
 
+## 🎨 Overview
+This creative portfolio is designed with a modern "brutalist" approach, emphasizing interactive animations and elegant transitions. It showcases my projects, skills, and experiences in a visually captivating and interactive format.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ✨ Key Features
+- Brutalist Design - Bold graphic style with strong contrasts
+- GSAP Animations - Smooth transitions and scroll animations for an immersive experience
+- Interactive Drawing - Ability to draw directly on the website
+- Intuitive Navigation - Original and functional navigation menu
+- Logo Animations - Interactive logo with flame animations
+- Dark Mode - Dark theme support for better readability
 
-## Getting Started
+## 🚀 Technologies
+- Next.js 15 - React framework with App Router for optimal hybrid rendering
+- TypeScript - Static typing for more robust code
+- Tailwind CSS v4 - Utility-first styling with the latest features
+- GSAP - Advanced animations for scrolling and transitions
+- ScrollReveal - Scroll animations for sections
 
-First, run the development server:
+## 🛠️ Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    # Clone the repository
+    git clone https://github.com/Pauldbg/creative-portfolio.git
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    # Navigate to the project directory
+    cd creative-portfolio
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    # Install dependencies
+    pnpm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    # Start the development server
+    pnpm dev
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+    .
+    ├── app/               # Next.js pages and routes with App Router
+    ├── public/            # Static files (images, etc.)
+    ├── src/
+    │   ├── components/    # Reusable UI components
+    │   ├── features/      # Main features by domain
+    │   ├── hooks/         # Custom React hooks (useGSAP, useDrawing)
+    │   ├── layout/        # Layout components
+    │   └── types/         # TypeScript type definitions
+    ├── tsconfig.json      # TypeScript configuration
+    └── tailwind.config.js # Tailwind CSS configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔥 Core Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Homepage Animation
+Logo drawing animation with GSAP to create a memorable welcome experience.
 
-## Deploy on Vercel
+### Brutalist Navigation
+Navigation menu with bold transitions and modern brutalist design.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Interactive Drawing Mode
+Ability to draw directly on the page with automatic erasure.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Animated Project Sections
+Project presentation with scroll animations and smooth transitions.
+
+## 📧 Contact
+Feel free to contact me for any questions or collaboration proposals:
+- Email: p.duboisgance@gmail.com
+- LinkedIn: //
+- GitHub: Pauldbg
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
