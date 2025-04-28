@@ -2,7 +2,7 @@
 
 import { MenuButton } from "./MenuButton";
 import { MenuOverlay } from "./MenuOverlay";
-import { useMenu } from "../../hooks/useMenu";
+import { useMenu } from "../../hooks/useMenu"
 import { menuItems } from "./constants/menuItems";
 
 export const BrutalNavButton = () => {

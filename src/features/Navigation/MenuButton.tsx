@@ -7,7 +7,7 @@ export const MenuButton = ({ isOpen, onToggle }: MenuButtonProps) => {
   return (
     <button
       onClick={onToggle}
-      className="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-white text-black border-2 border-black"
+      className="fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-white text-black border-2 border-black cursor-pointer"
       aria-label={isOpen ? "Close the menu" : "Open the menu"}
     >
       {isOpen ? (
