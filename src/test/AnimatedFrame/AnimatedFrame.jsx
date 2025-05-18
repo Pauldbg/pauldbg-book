@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
+
 export default function AnimatedFrame() {
   const svgRef = useRef(null);
   const contentRef = useRef(null);

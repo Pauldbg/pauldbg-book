@@ -1,75 +1,80 @@
-// components/LandingAnimation.tsx
+// TODO refactorisation avec useGsap
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Préchargement du plugin ScrollTrigger pour éviter les problèmes d'importation dynamique
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function LandingAnimation() {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
+  const pathsRef = useRef<SVGPathElement[]>([]);
+  
+  // Utilisation de useEffect pour s'assurer que le DOM est prêt
+  // avant d'initialiser les valeurs de getTotalLength
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const initGSAP = async () => {
-      const ScrollTriggerModule = await import("gsap/dist/ScrollTrigger");
-      gsap.registerPlugin(ScrollTriggerModule.ScrollTrigger);
-
-      if (!svgRef.current) return;
-
-      // Préparer les chemins pour l'animation
-      const paths = Array.from(svgRef.current.querySelectorAll("path"));
-
-      // Inverser l'ordre des paths pour l'animation (du haut vers le bas)
-      const reversedPaths = [...paths].reverse();
-
-      // Configurer chaque chemin
-      reversedPaths.forEach((path: SVGPathElement) => {
-        const length = path.getTotalLength ? path.getTotalLength() : 1000;
-
-        // Initialiser le chemin avec dash égal à la longueur
-        gsap.set(path, {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-          opacity: 1,
-        });
-      });
-
-      // Animer le tracé des chemins au scroll
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top center",
-          end: "+=220%",
-          scrub: 1,
-          markers: true, // Activer pour voir exactement où l'animation commence/finit
-        },
-      });
-
-      // Animer chaque chemin avec un délai séquentiel
-      // Plus de délai entre les chemins pour un effet plus progressif
-      reversedPaths.forEach((path: SVGPathElement) => {
-        tl.to(
-          path,
-          {
-            strokeDashoffset: 0,
-            duration: 3,
-            ease: "power2.inOut",
-          },
-          "-=2.5"
-        ); // Légèrement décalé pour créer un effet de séquence
-      });
-    };
-
-    initGSAP();
-
-    return () => {
-      if (ScrollTrigger) {
-        ScrollTrigger.getAll().forEach((st) => st.kill());
-      }
-    };
+    if (!svgRef.current) return;
+    
+    // Collecter les références aux chemins SVG
+    pathsRef.current = Array.from(svgRef.current.querySelectorAll("path"));
   }, []);
+  
+  // Utiliser useGSAP pour l'animation
+  useGSAP(() => {
+    // Vérifier si nous sommes côté client et si les références sont prêtes
+    if (typeof window === "undefined" || !svgRef.current || pathsRef.current.length === 0) return;
+    
+    // Inverser l'ordre pour l'animation du haut vers le bas
+    const reversedPaths = [...pathsRef.current].reverse();
+    
+    // Configurer chaque chemin
+    reversedPaths.forEach((path) => {
+      // Vérifier que path est bien un SVGPathElement
+      if (!(path instanceof SVGPathElement)) return;
+      
+      // Calculer la longueur du tracé
+      const length = path.getTotalLength ? path.getTotalLength() : 1000;
+      
+      // Initialiser l'état du tracé
+      gsap.set(path, {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+        opacity: 1,
+      });
+    });
+    
+    // Créer la timeline d'animation
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top center",
+        end: "+=220%",
+        scrub: 1,
+        markers: true,
+      },
+    });
+    
+    // Animer chaque chemin séquentiellement
+    reversedPaths.forEach((path) => {
+      tl.to(
+        path,
+        {
+          strokeDashoffset: 0,
+          duration: 3,
+          ease: "power2.inOut",
+        },
+        "-=2.5" // Décalage pour l'effet de séquence
+      );
+    });
+    
+    // Pas besoin de nettoyer manuellement, useGSAP s'en chargera
+  }, { scope: containerRef, dependencies: [pathsRef.current.length] });
 
   return (
     <div

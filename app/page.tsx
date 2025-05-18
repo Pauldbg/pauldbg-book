@@ -5,11 +5,11 @@ import { BrutalNavButton } from "@/src/features/Navigation/BrutalNavigationButto
 import dynamic from "next/dynamic";
 
 // Imports dynamiques avec ssr désactivé pour éviter le flash
-const Logo = dynamic(() => import("@/src/features/DrawLandingAnimation/Logo"), {
+const Logo = dynamic(() => import("@/src/features/Landing/DrawLandingAnimation/Logo"), {
   ssr: false,
 });
 const LandingAnimation = dynamic(
-  () => import("@/src/features/DrawLandingAnimation/LandingAnimation"),
+  () => import("@/src/features/Landing/DrawLandingAnimation/LandingAnimation"),
   {
     ssr: false,
   }

@@ -1,18 +1,18 @@
 // components/Logo.jsx
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 export default function Logo() {
   const logoRef = useRef<SVGSVGElement | null>(null);
   // Création des refs pour chaque élément du SVG (les lettres)
   const letterRefs = useRef<SVGPathElement[]>([]);
-  useEffect(() => {
+  
+  useGSAP(() => {
     // Récupération de tous les éléments path dans le SVG
     if (!logoRef.current) return;
     const letterElements = logoRef.current.querySelectorAll("path");
-
-    // Récupération de l'élément Paul Emoji
 
     // Réinitialisation des références pour s'assurer qu'elles sont à jour
     letterRefs.current = Array.from(letterElements);
@@ -41,7 +41,8 @@ export default function Logo() {
         });
       },
     });
-  }, []);
+  }, { scope: logoRef }); // Le scope est le logoRef, il limite le contexte GSAP à cette référence
+
 
   return (
     <div className="py-12 text-center">
