@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.0.5",
     "@react-three/fiber": "^9.1.0",
     "@react-three/rapier": "^2.0.0",
