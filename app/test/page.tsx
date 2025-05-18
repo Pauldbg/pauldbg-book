@@ -1,7 +1,7 @@
 "use client";
 
 // app/test/page.tsx
-import AnimatedFrame from "@/src/features/AnimatedFrame/AnimatedFrame";
+import AnimatedFrame from "@/src/test/AnimatedFrame/AnimatedFrame";
 // import MenuButton from '@/src/components/ui/MenuButton';
 
 export default function TestPage() {
