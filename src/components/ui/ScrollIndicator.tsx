@@ -1,12 +1,11 @@
-// src/components/ui/ScrollIndicator.jsx
 "use client";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function ScrollIndicator() {
-  const textRef = useRef(null);
-  const arrowRef = useRef(null);
-  const [isClient, setIsClient] = useState(false); // on controlle l'apparition de l'indicateur
+  const textRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState<boolean>(false); // on controlle l'apparition de l'indicateur
 
   // S'assurer qu'on est côté client avant d'initialiser GSAP
   useEffect(() => {
@@ -17,7 +16,7 @@ export default function ScrollIndicator() {
     // Ne pas initialiser les animations si on n'est pas côté client
     if (!isClient) return;
 
-    const animationDelay = 3;
+    const animationDelay: number = 3;
 
     // Animation répétitive pour l'indicateur
     gsap.to(arrowRef.current, {
